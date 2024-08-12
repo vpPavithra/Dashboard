@@ -1,0 +1,129 @@
+<ion-card>
+  <ion-card-content class="elp-content">
+    <ion-col [size]="type==='elp' ? 3 : 3.5">
+      <div class="elp-main">
+        <ion-card-title>{{title}}</ion-card-title>
+        <circle-progress
+          [showTitle]="true"
+          [showUnits] = "false"
+          [percent]="101"
+          [maxPercent]="100"
+          [radius]="100"
+          [showSubtitle] = "true"
+          [showInnerStroke]="false"
+          [outerStrokeWidth]="10"
+          [outerStrokeColor]="'#D5D2FA'"
+          [backgroundGradient]="true"
+          [showBackground]="true"
+          [backgroundOpacity]="1"
+          backgroundColor = #8C83EA
+          backgroundGradientStopColor = #8C83EA
+          [backgroundPadding]='-10'
+          [title]= "'Total Opportunities'"
+          subtitle = "6565"
+          subtitleColor = #ffffff
+          titleColor = #ffffff
+          titleFontSize= "17"
+          subtitleFontSize= "17"
+        ></circle-progress>
+      </div>
+    </ion-col>
+    <ion-col [size]="type==='elp' ? 6 : 8.5">
+      <div>
+        <ion-row style="margin-inline: 0.8rem;">
+          <ion-col [size]="type==='mbo' ? 3 : 4" *ngFor="let elp of list">
+            <ion-card style="margin: 0.4rem; height: auto; margin-bottom: 2rem !important;">
+              <ion-card-content>
+                <ion-card-subtitle>{{elp.label}}</ion-card-subtitle>
+                <ion-card-title>{{elp.count}}</ion-card-title>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+        <!-- only for VO section -->
+        <ion-row *ngIf="type==='vo'">
+          <ion-card-title>Volunteer Opportunities Participants</ion-card-title>
+          <ion-list class="horizontal-list">
+            <ion-item style="--inner-border-width: 0 1px 0 0" *ngFor="let ev of list">
+              <ion-col style="display: flex; flex-direction: column; align-items: center">
+                <ion-label>{{ev.label}}</ion-label>
+                <ion-title>{{ev.count}}</ion-title>
+              </ion-col>
+            </ion-item>
+          </ion-list>
+        </ion-row>
+        <ion-row  *ngIf="type==='vo'">
+          <ion-list class="horizontal-list" style="margin-top: 2rem;">
+            <ion-item style="--inner-border-width: 0 1px 0 0">
+              <div>
+                <ion-card-subtitle>Images</ion-card-subtitle>
+                <ion-row>
+                  <ion-col class="flex-column">
+                    <ion-label>Uploaded</ion-label>
+                    <ion-item lines="none">
+                      <ion-label sty>54764</ion-label>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col style="display: flex; flex-direction: column; align-items: center">
+                    <ion-label>Approved</ion-label>
+                    <ion-item lines="none">
+                      <ion-label>54764</ion-label>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+              </div>
+            </ion-item>
+            <ion-item lines="none">
+              <div>
+                <ion-card-subtitle>Videos</ion-card-subtitle>
+                <ion-row>
+                  <ion-col style="display: flex; flex-direction: column">
+                    <ion-label>Uploaded</ion-label>
+                    <ion-item lines="none">
+                      <ion-label>54764</ion-label>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col style="display: flex; flex-direction: column">
+                    <ion-label>Approved</ion-label>
+                    <ion-item lines="none">
+                      <ion-label>54764</ion-label>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+              </div>
+            </ion-item>
+          </ion-list>
+        </ion-row>
+        <!-- Only for MBO section -->
+        <ion-row  *ngIf="type==='mbo'">
+          <ion-col size="4" *ngFor="let elp of [0,1,2,3,4,5,6]" style="display: flex;">
+           <ion-avatar style="background: orange; display: flex; justify-content: center; align-items: center;">
+             <ion-icon name="home" style="color: black; font-size: 18px;"></ion-icon>
+           </ion-avatar>
+           <div>
+             <ion-label>States Registered</ion-label>
+             <ion-title>18</ion-title>
+           </div>
+          </ion-col>
+         </ion-row>
+      </div>        
+    </ion-col>
+    <ion-col size="3" *ngIf="type === 'elp'">
+      <div class="elp-progress">
+        <ion-card-title>Program Completion Rate</ion-card-title>
+        <circle-progress
+          [showTitle]="true"
+          [percent]="92"
+          [radius]="100"
+          [clockwise]="false"
+          [showInnerStroke]="false"
+          [outerStrokeWidth]="30"
+          [showBackground]="true"
+          [outerStrokeColor]="'#8C83EA'"
+          [animation]="true"
+          [animationDuration]="300"
+        ></circle-progress>
+      </div>
+    </ion-col>
+  </ion-card-content>
+</ion-card>

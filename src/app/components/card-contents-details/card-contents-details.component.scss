@@ -1,0 +1,65 @@
+ion-card-title {
+    font-size: x-large;
+    padding: 0.8rem;
+}
+
+ion-card-subtitle {
+    font-size: larger;
+    padding-inline: 0.8rem;
+}
+
+ion-icon {
+    color: white;
+}
+
+ion-card {
+    border-radius: 8px;
+    height: 100%;
+    // align-items: center;
+    display: flex;
+}
+
+ion-list {
+    padding: 0;
+}
+
+.elp-content {
+    display: flex;
+    justify-content: center;
+    // align-items: center;
+    text-align: center;
+}
+
+.elp-main {
+    ion-card-title {
+        font-size: 42px;
+    }
+}
+
+.elp-progress, .elp-main {
+    display: flex;
+    // align-items: center;
+    flex-direction: column;
+}
+
+.elp-content-VO {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.elp-content-org {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.horizontal-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    ion-item {
+        --inner-border-width: 0 1px 0 0;
+    }
+}

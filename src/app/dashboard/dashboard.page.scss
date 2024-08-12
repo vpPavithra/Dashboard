@@ -1,0 +1,184 @@
+ion-content {
+    --background: #F0F4F8;
+    .content {
+        margin-inline: 1.5rem;
+    }
+}
+
+.flex-row {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filter-section {
+    margin-inline: 3rem;
+    width: 94%;
+}
+
+ion-segment {
+    margin-left: 2.3rem;
+    margin-bottom: 2rem;
+    width: min-content;
+    ion-segment-button {
+        text-transform: capitalize;
+        width: min-content;
+        margin-inline: 0.8rem;
+    }
+    .segment-button-checked {
+        color: #160363;
+        --indicator-color: #160363;
+    }
+}
+
+.filter {
+    width: 100%;
+    ion-label {
+        padding-left: 0.8rem;
+        color: #f15b43;
+        text-transform: capitalize;
+    }
+    ion-icon {
+        color: #f15b43;
+    }
+    ion-button {
+        color: #f15b43;
+        --border-color: #f15b43;
+        --border-width: 1.5px;
+        --border-radius: 10px;
+        text-transform: capitalize;
+    }
+}
+
+.each-row {
+    margin-bottom: 2rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.ion-card-content-row6 {
+    margin-bottom: 2rem;
+    padding: 0;
+    ion-card-content {
+        --border-radius: 10px;
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+}
+
+.last-row-content ion-card-content {
+    --border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-block: 0.8rem;
+    height: 100%;
+}
+
+.horizontal-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    ion-item {
+        --inner-border-width: 0 1px 0 0;
+    }
+}
+ion-thumbnail {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    --size: 6rem;
+    margin-left: 0.4rem;
+}
+.card-content {
+    margin-left: 1rem;
+}
+.card-content-last {
+    text-align: center;
+}
+
+ion-card-title {
+    font-size: x-large;
+    padding: 0.8rem;
+}
+
+ion-card-subtitle {
+    font-size: larger;
+    padding-inline: 0.8rem;
+}
+
+ion-icon {
+    color: white;
+}
+
+.youthCard {
+    margin-inline: 1.5rem;
+    border: 0.5px solid grey;
+    ion-card-subtitle {
+        color: black;
+        font-size: larger;
+        padding-inline: 0.4rem;
+    }
+    ion-card-title {
+        font-size: x-large;
+        padding: 0.4rem;
+    }
+}
+
+ion-card {
+    border-radius: 8px;
+    height: 100%;
+}
+
+.elp-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.elp-main {
+    ion-card-title {
+        font-size: xxx-large;
+    }
+}
+
+.elp-progress, .elp-main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.elp-content-VO {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.elp-content-org {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+ion-list {
+    padding: 0;
+}
+
+.feedback-card {
+    text-align: center;
+    ion-card-title {
+        font-size: 18px;
+    }
+}

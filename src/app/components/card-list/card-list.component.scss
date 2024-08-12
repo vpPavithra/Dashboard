@@ -1,0 +1,41 @@
+ion-thumbnail {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    --size: 6rem;
+    margin-left: 0.4rem;
+}
+
+ion-card-title {
+    font-size: x-large;
+    padding: 0.8rem;
+}
+
+ion-icon {
+    color: white;
+}
+
+ion-card {
+    border-radius: 8px;
+    height: 100%;
+}
+
+ion-list {
+    padding: 0;
+}
+
+.youthCard {
+    margin-inline: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 0.5px solid grey;
+    ion-card-subtitle {
+        color: black;
+        font-size: larger;
+        padding-inline: 0.4rem;
+    }
+    ion-card-title {
+        font-size: x-large;
+        padding: 0.4rem;
+    }
+}

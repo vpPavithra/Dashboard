@@ -1,0 +1,30 @@
+<ion-card>
+  <ion-card-title>{{title}}</ion-card-title>
+  <ion-list>
+    <div *ngFor="let item of list; let i=index">
+      <ion-item *ngIf="type==='event'" style="margin-block: 0.5rem;">
+        <ion-thumbnail style="background: lightgray; --size: 3rem">
+          <ion-label style="text-align: center; font-size: 20px;">{{i+1}}</ion-label>
+        </ion-thumbnail>
+        <div style="display: flex; flex-direction: column; margin-left: 1rem;">
+          <ion-title>{{item.title}}</ion-title>
+          <div style="display: flex; margin: 0.6rem; padding: 3px;">
+            <ion-icon name="location-outline" color="black" style="font-size: 22px;"></ion-icon>
+            <ion-label>{{item.location}}</ion-label>
+          </div>
+          <div style="display: flex; margin: 0 0 0.8rem 0.6rem; padding: 3px;">
+            <ion-icon name="location-outline" color="black"></ion-icon>
+            <ion-label>{{item.location}}</ion-label>
+          </div>
+        </div>
+      </ion-item>
+
+      <ion-card *ngIf="type!='event'" class="youthCard">
+        <ion-card-content [ngStyle]="{'background': item.bgColor}">
+          <ion-card-title [ngStyle]="{'color': item.color}">{{item.count}}</ion-card-title>
+          <ion-card-subtitle>{{item.type}}</ion-card-subtitle>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </ion-list>
+</ion-card>
