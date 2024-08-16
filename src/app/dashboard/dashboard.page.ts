@@ -44,6 +44,7 @@ export class DashboardPage implements OnInit {
   selectedType: string = "";
   filteredList = [];
   chartOptions: Highcharts.Options = {}
+  selectedCategory: string = ""
   constructor(
     private popover: PopoverController
   ) {
@@ -385,6 +386,7 @@ export class DashboardPage implements OnInit {
   }
 
   handleSelectedCategory(category?: any) {
+    this.selectedCategory = category.type
     this.chartOptions = {
       chart: {
         map: topo,
@@ -446,5 +448,15 @@ export class DashboardPage implements OnInit {
         console.log("callback ", cb)
       }));
     }, 0);
+  }
+
+  handleLabelStyle(youthlist: any) {
+    let color = ''
+    let border = ''
+    if (youthlist.type == this.selectedType) {
+      color = youthlist.textColor
+      border = `1px solid ${color}`
+    }
+    return { 'color': color, 'border-bottom': border }
   }
 }

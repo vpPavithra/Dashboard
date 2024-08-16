@@ -46,14 +46,6 @@
           <ion-col size="6">
             <ion-card>
               <ion-card-content>
-                <!-- <div id="chart-container">FusionCharts will render here</div> -->
-                 <!-- <div>
-                    <highcharts-chart
-                      [Highcharts]="Highcharts"
-                      [options]="chartOptions"
-                      style="width: 100%; height: 500px; display: block;">
-                    </highcharts-chart>
-                 </div> -->
                  <div style="display: flex;">
                    <div id="container" style="width: 100%; height: 600px;"></div>
                    <div style="position: absolute; bottom: 0; right: 0; width: 35%;">
@@ -63,7 +55,7 @@
                         <ion-list>
                           <div *ngFor="let category of categories" (click)="handleSelectedCategory(category)">
                             <ion-thumbnail [ngStyle]="{'background': category.color}"></ion-thumbnail>
-                            <ion-label>{{category.type}}</ion-label>
+                            <ion-label [ngStyle]="{'border-bottom': (selectedCategory == category.type) ? '1px solid black': ''}">{{category.type}}</ion-label>
                           </div>
                         </ion-list>
                       </ion-card-content>
@@ -105,7 +97,7 @@
                   <ion-card-title>Youth Registered</ion-card-title>
                   <ion-list class="horizontal-list">
                     <ion-item *ngFor="let youthlist of youthRegisteredList" [(NgModule)]="selectedType" (click)="handleYouthData(youthlist)">
-                      <ion-label [ngStyle]="{'color': (youthlist.type == selectedType ) ? youthlist.color : '', 'border-bottom': (youthlist.type == selectedType ) ? '1px solid black' : '' }">{{youthlist.type}}</ion-label>
+                      <ion-label [ngStyle]="handleLabelStyle(youthlist)">{{youthlist.type}}</ion-label>
                     </ion-item> 
                   </ion-list>
               </ion-card-header>
