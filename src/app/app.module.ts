@@ -8,10 +8,12 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { ComponentsModule } from './components/components.module';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
+    HighchartsChartModule,
     ComponentsModule,
     NgCircleProgressModule.forRoot({
       "backgroundPadding": 7,

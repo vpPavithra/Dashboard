@@ -93,13 +93,15 @@ ion-segment {
         --inner-border-width: 0 1px 0 0;
     }
 }
-ion-thumbnail {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    --size: 6rem;
-    margin-left: 0.4rem;
+.ion-card-content-row6, .last-row-content, .horizontal-list {
+    ion-thumbnail {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        --size: 6rem;
+        margin-left: 0.4rem;
+    }
 }
 .card-content {
     margin-left: 1rem;
@@ -180,5 +182,18 @@ ion-list {
     text-align: center;
     ion-card-title {
         font-size: 18px;
+    }
+}
+
+.heat-map {
+    ion-thumbnail {
+        --size: 1rem
+    }
+    div {
+        display: flex;
+        margin-block: 0.5rem;
+        ion-label {
+            margin-left: 0.5rem;
+        }
     }
 }

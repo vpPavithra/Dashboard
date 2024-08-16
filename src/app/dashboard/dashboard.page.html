@@ -46,7 +46,30 @@
           <ion-col size="6">
             <ion-card>
               <ion-card-content>
-                <div id="chart-container">FusionCharts will render here</div>
+                <!-- <div id="chart-container">FusionCharts will render here</div> -->
+                 <!-- <div>
+                    <highcharts-chart
+                      [Highcharts]="Highcharts"
+                      [options]="chartOptions"
+                      style="width: 100%; height: 500px; display: block;">
+                    </highcharts-chart>
+                 </div> -->
+                 <div style="display: flex;">
+                   <div id="container" style="width: 100%; height: 600px;"></div>
+                   <div style="position: absolute; bottom: 0; right: 0; width: 35%;">
+                    <ion-card class="heat-map">
+                      <ion-card-content>
+                        <ion-label style="color: black; font-size: 15px;">Select Heat Map Category</ion-label>
+                        <ion-list>
+                          <div *ngFor="let category of categories" (click)="handleSelectedCategory(category)">
+                            <ion-thumbnail [ngStyle]="{'background': category.color}"></ion-thumbnail>
+                            <ion-label>{{category.type}}</ion-label>
+                          </div>
+                        </ion-list>
+                      </ion-card-content>
+                    </ion-card>
+                   </div>
+                 </div>
               </ion-card-content>
             </ion-card>
           </ion-col>
@@ -87,7 +110,9 @@
                   </ion-list>
               </ion-card-header>
               <ion-card-content class="text-center">
-                <div id="chart-container-youth">FusionCharts will render here</div>
+                <div>
+                  <div id="chart-container-youth"  style="margin-inline: 20%; width: 60%; margin-top: 2rem;"></div>
+                </div>
               </ion-card-content>
             </ion-card>
           </ion-col>
@@ -98,12 +123,12 @@
       <ion-grid>
         <ion-row class="each-row">
           <ion-col size="2.5">
-            <app-card-list [type]="" [title]="'Youth Registered'" [list]="youthRegisteredList"></app-card-list>
+            <app-card-list [type]="'youth'" [title]="'Youth Registered'" [list]="youthRegisteredList"></app-card-list>
           </ion-col>
           <ion-col size="6.5">
             <ion-card>
               <ion-card-title>Mega Events</ion-card-title>
-              <ion-card-content>
+              <ion-card-content style="padding-bottom: 0 !important;">
                 <ion-list class="horizontal-list">
                   <ion-col size="6">
                     <ion-item>
@@ -127,7 +152,7 @@
                               </ion-item>
                             </ion-list>
                             <ion-item lines="none">
-                              <div style="margin-top: 2rem;">
+                              <div style="margin-top: 1rem;">
                                 <ion-label>Images</ion-label>
                                 <ion-row>
                                   <ion-col class="flex-column" style="margin-right: 1rem;">
@@ -142,7 +167,7 @@
                               </div>
                             </ion-item>
                             <ion-item lines="none" class="each-row">
-                              <div style="margin-top: 2rem;">
+                              <div style="margin-top: 1rem;">
                                 <ion-label>Videos</ion-label>
                                 <ion-row>
                                   <ion-col class="flex-column" style="margin-right: 1rem;">
@@ -161,9 +186,9 @@
                       </div>
                     </ion-item>
                   </ion-col>
-                  <ion-col size="6" style="margin-bottom: 0;">
+                  <ion-col size="6">
                     <ion-item lines="none">
-                      <div style="justify-content: center; align-items: center; display: flex; flex-direction: column; width: 100%;">
+                      <div class="flex-column" style="width: 100%;">
                         <div>
                           <ion-thumbnail style="width: 100%; margin-inline: 0.2rem; --size: 10rem; --border-radius: 10px;">
                             <img alt="" src="https://as1.ftcdn.net/v2/jpg/07/79/24/88/1000_F_779248828_tLe8EvFw1qIIcv9EBl9KVPviISk5YeBb.jpg"/>
@@ -183,7 +208,7 @@
                                 <ion-label style="margin-left: 1rem;">Mumbai</ion-label>
                               </ion-item>
                             </div>
-                            <ion-list class="horizontal-list" style="margin-top: 2rem;">
+                            <ion-list class="horizontal-list" style="margin-top: 1rem;">
                               <ion-item style="--inner-border-width: 0 1px 0 0" *ngFor="let ev of eventsDetails">
                                 <ion-col style="display: flex; flex-direction: column; align-items: center">
                                   <ion-label>{{ev.label}}</ion-label>
@@ -191,7 +216,7 @@
                                 </ion-col>
                               </ion-item>
                             </ion-list>
-                            <ion-row class="each-row" style="margin-top: 2rem;">
+                            <ion-row class="each-row" style="margin-top: 1rem;">
                               <ion-col class="flex-column">
                                 <ion-label>Images Shared</ion-label>
                                 <ion-label style="font-size: 20px; font-weight: 500;">54764</ion-label>
@@ -220,7 +245,7 @@
       <ion-grid>
         <ion-row class="each-row">
           <ion-col size="9">
-            <app-card-contents-details title="Experiential Learning Program" [list]="elpList" type="elp"></app-card-contents-details>
+            <app-card-contents-details title="Experiential Learning Program" label='Total Opportunities' count="6565"  [list]="elpList" type="elp"></app-card-contents-details>
           </ion-col>
           <ion-col size="3">
             <app-card-list [type]="'event'" [title]="'Popular Programs'" [list]="trendingItems"></app-card-list>
@@ -232,110 +257,10 @@
       <ion-grid>
         <ion-row class="each-row">
           <ion-col size="9">
-            <app-card-contents-details title="Volunteer Opportunities for Events" [list]="voEventsList" type="vo"></app-card-contents-details>
-          
-            <!-- <ion-card>
-              <ion-card-content class="elp-content-VO">
-                <ion-col size="3.5" style="margin-bottom: 0;">
-                  <div class="elp-main">
-                    <ion-card-title>Volunteer Opportunities for Events</ion-card-title>
-                    <circle-progress
-                      [showTitle]="true"
-                      [showUnits] = "false"
-                      [percent]="101"
-                      [maxPercent]="100"
-                      [radius]="100"
-                      [showSubtitle] = "true"
-                      [showInnerStroke]="false"
-                      [outerStrokeWidth]="10"
-                      [outerStrokeColor]="'#FCDDD8'"
-                      [backgroundGradient]="true"
-                      [showBackground]="true"
-                      [backgroundOpacity]="1"
-                      backgroundColor = #F15B43
-                      backgroundGradientStopColor = #F15B43
-                      [backgroundPadding]='-10'
-                      title= "Total Vo`s"
-                      subtitle = "6565"
-                      subtitleColor = #ffffff
-                      titleColor = #ffffff
-                      titleFontSize= "17"
-                      subtitleFontSize= "17"
-                    ></circle-progress>
-                  </div>
-                </ion-col>
-                <ion-col size="8.5" style="margin-bottom: 0;">
-                  <div>
-                    <ion-row style="margin-inline: 0.8rem;">
-                      <ion-col size="8.5" style="display: flex;">
-                        <ion-card style="margin-inline: 1.5rem;" *ngFor="let elp of voEventsList">
-                          <ion-card-content style="display: flex; flex-direction: column; justify-content: center;">
-                            <ion-card-subtitle>{{elp.label}}</ion-card-subtitle>
-                            <ion-card-title>{{elp.count}}</ion-card-title>
-                          </ion-card-content>
-                        </ion-card>
-                      </ion-col>
-                    </ion-row>
-                    <ion-row>
-                      <ion-card-title>Volunteer Opportunities Participants</ion-card-title>
-                      <ion-list class="horizontal-list">
-                        <ion-item style="--inner-border-width: 0 1px 0 0" *ngFor="let ev of eventsDetails">
-                          <ion-col style="display: flex; flex-direction: column; align-items: center">
-                            <ion-label>{{ev.label}}</ion-label>
-                            <ion-title>{{ev.count}}</ion-title>
-                          </ion-col>
-                        </ion-item>
-                      </ion-list>
-                    </ion-row>
-                    <ion-row>
-                      <ion-list class="horizontal-list" style="margin-top: 2rem;">
-                        <ion-item style="--inner-border-width: 0 1px 0 0">
-                          <div>
-                            <ion-card-subtitle>Images</ion-card-subtitle>
-                            <ion-row>
-                              <ion-col class="flex-column">
-                                <ion-label>Uploaded</ion-label>
-                                <ion-item lines="none">
-                                  <ion-label sty>54764</ion-label>
-                                </ion-item>
-                              </ion-col>
-                              <ion-col style="display: flex; flex-direction: column; align-items: center">
-                                <ion-label>Approved</ion-label>
-                                <ion-item lines="none">
-                                  <ion-label>54764</ion-label>
-                                </ion-item>
-                              </ion-col>
-                            </ion-row>
-                          </div>
-                        </ion-item>
-                        <ion-item lines="none">
-                          <div>
-                            <ion-card-subtitle>Videos</ion-card-subtitle>
-                            <ion-row>
-                              <ion-col style="display: flex; flex-direction: column">
-                                <ion-label>Uploaded</ion-label>
-                                <ion-item lines="none">
-                                  <ion-label>54764</ion-label>
-                                </ion-item>
-                              </ion-col>
-                              <ion-col style="display: flex; flex-direction: column">
-                                <ion-label>Approved</ion-label>
-                                <ion-item lines="none">
-                                  <ion-label>54764</ion-label>
-                                </ion-item>
-                              </ion-col>
-                            </ion-row>
-                          </div>
-                        </ion-item>
-                      </ion-list>
-                    </ion-row>
-                  </div>
-                </ion-col>
-              </ion-card-content>
-            </ion-card> -->
+            <app-card-contents-details title="Volunteer Opportunities for Events" label='Total VO`s' count="6565" [list]="voEventsList" type="vo"></app-card-contents-details>
           </ion-col>
           <ion-col size="3">
-            <app-card-list [type]="'event'" [title]="'Top 5 Organizations'" [list]="orgList"></app-card-list>
+            <app-card-list [type]="'org'" [title]="'Top 5 Organizations'" [list]="topOrgList"></app-card-list>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -344,67 +269,10 @@
       <ion-grid>
         <ion-row class="each-row">
           <ion-col size="9">
-            <app-card-contents-details title="My Bharat Organizations" [list]="orgList" type="mbo"></app-card-contents-details>
-            <!-- <ion-card>
-              <ion-card-content class="elp-content-org">
-                <ion-col size="3.5">
-                  <div class="elp-main">
-                    <ion-card-title>My Bharat Organizations</ion-card-title>
-                    <circle-progress
-                      [showTitle]="true"
-                      [showUnits] = "false"
-                      [percent]="101"
-                      [maxPercent]="100"
-                      [radius]="100"
-                      [showSubtitle] = "true"
-                      [showInnerStroke]="false"
-                      [outerStrokeWidth]="10"
-                      [outerStrokeColor]="'#C8F2F9'"
-                      [backgroundGradient]="true"
-                      [showBackground]="true"
-                      [backgroundOpacity]="1"
-                      backgroundColor = #1EC8E5
-                      backgroundGradientStopColor = #1EC8E5
-                      [backgroundPadding]='-10'
-                      title= "Total"
-                      subtitle = "556"
-                      subtitleColor = #ffffff
-                      titleColor = #ffffff
-                      titleFontSize= "17"
-                      subtitleFontSize= "17"
-                    ></circle-progress>
-                  </div>
-                </ion-col>
-                <ion-col size="8.5">
-                  <div>
-                    <ion-row style="margin-inline: 0.8rem;">
-                      <ion-col size="3" *ngFor="let elp of orgList">
-                        <ion-card style="margin: 0.4rem;">
-                          <ion-card-content>
-                            <ion-card-subtitle>{{elp.label}}</ion-card-subtitle>
-                            <ion-card-title>{{elp.count}}</ion-card-title>
-                          </ion-card-content>
-                        </ion-card>
-                      </ion-col>
-                    </ion-row>
-                    <ion-row>
-                     <ion-col size="4" *ngFor="let elp of [0,1,2,3,4,5,6]" style="display: flex;">
-                      <ion-avatar style="background: orange; display: flex; justify-content: center; align-items: center;">
-                        <ion-icon name="home" style="color: black; font-size: 18px;"></ion-icon>
-                      </ion-avatar>
-                      <div>
-                        <ion-label>States Registered</ion-label>
-                        <ion-title>18</ion-title>
-                      </div>
-                     </ion-col>
-                    </ion-row>
-                  </div>
-                </ion-col>
-              </ion-card-content>
-            </ion-card> -->
+            <app-card-contents-details title="My Bharat Organizations" label='Total' count="6565" [list]="orgList" type="mbo"></app-card-contents-details>
           </ion-col>
           <ion-col size="3">
-            <app-card-list [type]="'event'" [title]="'Top 5 Trending Org.'" [list]="orgList"></app-card-list>
+            <app-card-list [type]="'org'" [title]="'Top 5 Trending Org.'" [list]="topOrgList"></app-card-list>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -419,9 +287,18 @@
                   <ion-label style="font-size: 22px; color: black; font-weight: 500;">Feedback </ion-label>
                   <ion-label style="font-size: 18px; color: black;">(Total feedback received:343)</ion-label>
                 </div>
-                <ion-row>
-
-                </ion-row>
+                <div *ngFor="let feed of [0,1]">
+                  <div style="display: flex; margin-top: 2rem; align-items: center;">
+                    <ion-label style="font-size: 20px; font-weight: 500; color: black;">UI feedback improves user experience  | </ion-label>
+                    <div *ngFor="let rate of [0,1,2,3, 4]; let i = index" style="display: flex;">
+                      <ion-icon name="star" style="color: black; font-size: 24px;"></ion-icon>
+                    </div>
+                  </div>
+                  <div>
+                    <ion-label>By A Gobinath - 09/07/2024</ion-label>
+                  </div>
+                  <ion-label>This article will show how you can offer valuable user feedback and improve usability using visual feedback...</ion-label>
+                </div>
               </ion-card-content>
             </ion-card>
           </ion-col>
@@ -434,8 +311,18 @@
                 <ion-row>
                   <ion-col size="4" *ngFor="let feedback of feedbackTypes">
                     <ion-card class="feedback-card">
-                      <ion-card-subtitle>{{feedback.type}}</ion-card-subtitle>
-                      <ion-card-title>{{feedback.count}}</ion-card-title>
+                      <ion-card-content>
+                        <ion-card-subtitle>{{feedback.type}}</ion-card-subtitle>
+                        <ion-card-title *ngIf="feedback.type !== 'Average Rating'">{{feedback.count}}</ion-card-title>
+                        <div *ngIf="feedback.type == 'Average Rating'" style="display: flex; justify-content: center; margin-top: 1rem;">
+                          <div *ngFor="let rate of [0,1,2,3]; let i = index">
+                            <ion-icon name="star" style="color: black; font-size: 24px;"></ion-icon>
+                          </div>
+                          <div>
+                            <ion-icon name="star-outline" style="color: black; font-size: 24px;"></ion-icon>
+                          </div>
+                        </div>
+                      </ion-card-content>
                     </ion-card>
                   </ion-col>
                 </ion-row>

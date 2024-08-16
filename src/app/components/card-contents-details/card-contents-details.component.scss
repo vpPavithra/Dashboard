@@ -12,11 +12,16 @@ ion-icon {
     color: white;
 }
 
+.col-bottom {
+    margin-bottom: 1rem;
+}
+
 ion-card {
     border-radius: 8px;
     height: 100%;
-    // align-items: center;
+    align-items: center;
     display: flex;
+    justify-content: center;
 }
 
 ion-list {
@@ -38,7 +43,7 @@ ion-list {
 
 .elp-progress, .elp-main {
     display: flex;
-    // align-items: center;
+    align-items: center;
     flex-direction: column;
 }
 
@@ -62,4 +67,17 @@ ion-list {
     ion-item {
         --inner-border-width: 0 1px 0 0;
     }
+}
+
+.circular-view {
+    width: 200px;
+    height: 200px;
+    content: "";
+    border-radius: 50%;
+    background:#8C83EA;
+    border: 10px solid #D5D2FA;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
 }

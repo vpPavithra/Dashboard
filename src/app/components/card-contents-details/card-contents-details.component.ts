@@ -9,6 +9,11 @@ export class CardContentsDetailsComponent implements OnInit {
   @Input() list: any
   @Input() title: any
   @Input() type: any
+  @Input() label: any
+  @Input() count: any
+
+  eventsDetails = [{ label: "Attendees", count: 146565 }, { label: "Participants", count: 146565 }, { label: "Volunteers", count: 146565 }]
+
   constructor() { }
 
   ngOnInit() { }
