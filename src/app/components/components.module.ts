@@ -7,12 +7,14 @@ import { FilterPopoverComponent } from './filter-popover/filter-popover.componen
 import { CardListComponent } from './card-list/card-list.component';
 import { CardContentsDetailsComponent } from './card-contents-details/card-contents-details.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { PreviewComponent } from './preview/preview.component';
 
 @NgModule({
     declarations: [
         FilterPopoverComponent,
         CardListComponent,
-        CardContentsDetailsComponent
+        CardContentsDetailsComponent,
+        PreviewComponent
     ],
     imports: [
         CommonModule,
@@ -25,7 +27,8 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     exports: [
         FilterPopoverComponent,
         CardListComponent,
-        CardContentsDetailsComponent
+        CardContentsDetailsComponent,
+        PreviewComponent
     ],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA

@@ -1,0 +1,14 @@
+
+<ion-header [translucent]="true">
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item lines="none">
+    <ion-title>{{title}}</ion-title>
+    <ion-chip (click)="createOrg($event)">Create Organization</ion-chip>
+    <ion-chip (click)="joinOrg($event)">Join Organization</ion-chip>
+  </ion-item>
+
+</ion-content>

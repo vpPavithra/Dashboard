@@ -10,14 +10,14 @@
   <div class="popover-container">
     <ion-label style="font-size: 20px; font-weight: 400;">Location</ion-label>
     <ion-list>
-      <div style="margin-top: 1rem; margin-bottom: 0.4rem;">
+      <div style="margin-top: 0.5rem; margin-bottom: 0.4rem;">
         <ion-label style="font-size: large;">State</ion-label>
       </div>
       <ion-select fill="outline" labelPlacement="stacked" [value]="selectedStates" interface="popover" [(ngModel)]="selectedStates" (ionChange)="handleDistricts()">
         <ion-select-option *ngFor="let ls of states" [value]="ls.name">{{ls.name}}</ion-select-option>
         <ion-select-option value="all">All</ion-select-option>
       </ion-select>
-      <div style="margin-top: 1rem; margin-bottom: 0.4rem;">
+      <div style="margin-top: 0.5rem; margin-bottom: 0.4rem;">
         <ion-label style="font-size: large;">District</ion-label>
       </div>
       <ion-select fill="outline" labelPlacement="stacked" [value]="selectedDistrict" interface="popover" [(ngModel)]="selectedDistrict">
@@ -25,5 +25,8 @@
         <ion-select-option value="all">All</ion-select-option>
       </ion-select>
     </ion-list>
+  </div>
+  <div style="float: right; margin-inline: 2rem; margin-bottom: 1rem;">
+    <ion-button fill="outline" style="color: #F15B43; --border-color: #F15B43;" (click)="applyFilter()">Done</ion-button>
   </div>
 </ion-content>

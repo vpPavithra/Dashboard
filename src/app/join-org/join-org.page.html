@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="main-content">
+    <div style="margin-inline: 4rem;">
+      <ion-button fill="clear" style="color: black; font-size: 16px;">
+        <ion-icon slot="start" name="arrow-back"></ion-icon>
+        Go back
+      </ion-button>
+    </div>
+    <div>
+      <ion-item lines="none">
+        <ion-title style="color: red;">Join My Bharat Organization</ion-title>
+      </ion-item>
+      <Form style="width: 90%;" [formGroup]="joinOrgForm" (ngSubmit)="onSubmit()">
+        <div style="border: 1px solid lightgrey; margin: 2rem; border-radius: 10px;">
+          <ion-item lines="none" style="margin-top: 1rem;">
+            <ion-title>Organization Structure</ion-title>
+          </ion-item>
+          <ion-row style="margin: 2rem;">
+            <ion-col *ngFor="let field of items" size="6">
+              <div style="margin-right: 2rem; margin-bottom: 1rem;">
+                <ion-label style="margin-bottom: 1rem;">{{field.label}}<span *ngIf="field.required" style="color: red;">*</span></ion-label>
+                <ion-select formControlName="{{field.label}}" fill="outline" labelPlacement="stacked" [placeholder]="field.placeholder" interface="popover" style="margin-top: 1rem;">
+                  <ion-select-option *ngFor="let opt of field.options" [value]="opt">{{opt}}</ion-select-option>
+                </ion-select>
+              </div>
+            </ion-col>
+          </ion-row>
+        </div>
+
+        <div style="border: 1px solid lightgrey; margin: 2rem; border-radius: 10px;">
+          <ion-item lines="none" style="margin-top: 1rem;">
+            <ion-title>Offical Address</ion-title>
+          </ion-item>
+          <ion-row style="margin: 2rem;">
+            <ion-col *ngFor="let field of officalAdd" size="6">
+              <div style="margin-right: 2rem; margin-bottom: 1rem;">
+                <ion-label style="margin-bottom: 1rem;">{{field.label}}<span *ngIf="field.required" style="color: red;">*</span></ion-label>
+                <div style="display: flex; margin-top: 1rem;">
+                  <ion-input style="width: 15%; margin-right: 1rem;" *ngIf="field.type == 'tel'" fill="outline" [type]="field.type" placeholder="+91"></ion-input>
+                  <ion-input *ngIf="field.type !== 'select'" fill="outline" formControlName="{{field.label}}" [type]="field.type" [placeholder]="field.placeholder"></ion-input>
+                </div>
+                <ion-select *ngIf="field.type == 'select'" fill="outline" formControlName="{{field.label}}" labelPlacement="stacked" [placeholder]="field.placeholder" interface="popover" style="margin-top: 1rem;">
+                  <ion-select-option *ngFor="let opt of field.options" [value]="opt">{{opt}}</ion-select-option>
+                </ion-select>
+              </div>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div style="float: right; margin: 2rem;">
+          <ion-button color="danger" fill="outline" slot="end" style="margin-right: 2rem;">Cancel</ion-button>
+          <ion-button color="danger" slot="end" type="submit">Send Request</ion-button>
+        </div>
+      </Form>
+    </div>
+  </div>
+</ion-content>

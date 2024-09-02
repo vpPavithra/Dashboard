@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -9,12 +9,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { ComponentsModule } from './components/components.module';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     HighchartsChartModule,
     ComponentsModule,
+    FormsModule,
     NgCircleProgressModule.forRoot({
       "backgroundPadding": 7,
       "radius": 60,
@@ -38,5 +40,6 @@ import { HighchartsChartModule } from 'highcharts-angular';
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

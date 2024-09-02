@@ -7,18 +7,18 @@
           <ion-label style="text-align: center; font-size: 20px;">{{i+1}}</ion-label>
         </ion-thumbnail>
         <div style="display: flex; flex-direction: column;">
-          <ion-title>{{item.title}}</ion-title>
+          <ion-title style="font-size: 16px;">{{item.title}}</ion-title>
           <div style="display: flex; margin: 0.3rem 0 0 0.6rem; padding: 3px;" *ngIf="type==='event'">
-            <ion-icon name="location-outline" color="black" style="font-size: 22px;"></ion-icon>
-            <ion-label>{{item.location}}</ion-label>
+            <ion-icon name="location-outline" color="black"></ion-icon>
+            <ion-label style="font-size: 16px;">{{item.location}}</ion-label>
           </div>
           <div style="display: flex; margin: 0 0 0.8rem 0.8rem; padding: 3px;" *ngIf="type==='event'">
             <div style="display: flex; justify-content: center;">
               <div *ngFor="let rate of [0,1,2,3]; let i = index">
-                <ion-icon name="star" style="color: green; font-size: 24px;"></ion-icon>
+                <ion-icon name="star" style="color: green; font-size: 20px;"></ion-icon>
               </div>
               <div>
-                <ion-icon name="star-outline" style="color: black; font-size: 24px;"></ion-icon>
+                <ion-icon name="star-outline" style="color: black; font-size: 20px;"></ion-icon>
               </div>
             </div>
             <ion-label>({{item.rating}})</ion-label>

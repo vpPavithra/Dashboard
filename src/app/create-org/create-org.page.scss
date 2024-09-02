@@ -1,0 +1,28 @@
+ion-segment {
+    margin-left: 2.3rem;
+    // margin-bottom: 2rem;
+    width: min-content;
+    ion-segment-button {
+        text-transform: capitalize;
+        width: min-content;
+        margin-inline: 0.8rem;
+    }
+    .segment-button-checked {
+        color: red;
+        --color-checked: red;
+        --indicator-color: red;
+        // --indicator-color: #160363;
+        --indicator-height: 0
+    }
+    ion-label {
+        font-size: 26px;
+    }
+}
+
+.main-content {
+    display: flex;
+    margin: 2rem;
+    ion-button {
+        text-transform: capitalize;
+    }
+}

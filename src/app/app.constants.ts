@@ -1,3 +1,40 @@
+export interface OrgStructure {
+    abbreviation: string;
+    handle: string;
+    category: string;
+    subCategory: string;
+    group: string;
+    type: string;
+    specialization: string;
+}
+
+export interface OrgAddress {
+    add1: string;
+    add2: string;
+    state: string;
+    district: string;
+    area: string;
+    localbody: string;
+    pincode: string;
+    city: string;
+    landmark: string;
+}
+
+export interface ContactInfo {
+    name: string;
+    landline: string;
+    mobile: string;
+    email: string;
+    website: string;
+}
+export interface OrgDetails {
+    description: string;
+    orgStructure: OrgStructure
+    specialization: string;
+    contactInfo: ContactInfo
+    docs: any
+}
+
 export const state_district = [
     {
         "id": "1",

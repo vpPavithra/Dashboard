@@ -28,7 +28,18 @@ export class FilterPopoverComponent implements OnInit {
   }
 
   async close() {
+    await this.popoverCtrl.dismiss()
+  }
+
+  async applyFilter() {
     console.log("selceted state ", this.selectedStates, this.selectedDistrict)
-    await this.popoverCtrl.dismiss([this.selectedStates, this.selectedDistrict])
+    let data = []
+    if (this.selectedDistrict !== "all") {
+      data.push(this.selectedDistrict)
+    }
+    if (this.selectedStates !== "all") {
+      data.push(this.selectedStates)
+    }
+    await this.popoverCtrl.dismiss(data)
   }
 }

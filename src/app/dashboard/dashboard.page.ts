@@ -41,8 +41,23 @@ export class DashboardPage implements OnInit {
   { type: "Volunteer Opportunities", color: '#A55EFF', stops: [[0, '#EFEFFF'], [0.5, '#BE92FF'], [1, '#A55EFF']] },
   { type: "Experiential Learning Program", color: '#009D9A', stops: [[0, '#D9EFEE'], [0.5, '#66CCB6'], [1, '#009D9A']] },
   { type: "Partner", color: '#DD5396', stops: [[0, '#EFEFFF'], [0.5, '#FF63A6'], [1, '#DD5396']] }]
+  mapData: any = [
+    ['madhya pradesh', 10], ['uttar pradesh', 11], ['karnataka', 12],
+    ['nagaland', 13], ['bihar', 14], ['lakshadweep', 15],
+    ['andaman and nicobar', 16], ['assam', 17], ['west bengal', 18],
+    ['puducherry', 19], ['daman and diu', 20], ['gujarat', 21],
+    ['rajasthan', 22], ['dadara and nagar havelli', 23],
+    ['chhattisgarh', 24], ['tamil nadu', 25], ['chandigarh', 26],
+    ['punjab', 27], ['haryana', 28], ['andhra pradesh', 29],
+    ['maharashtra', 30], ['himachal pradesh', 31], ['meghalaya', 32],
+    ['kerala', 33], ['telangana', 34], ['mizoram', 35], ['tripura', 36],
+    ['manipur', 37], ['arunanchal pradesh', 38], ['jharkhand', 39],
+    ['goa', 40], ['nct of delhi', 41], ['odisha', 42],
+    ['jammu and kashmir', 43], ['sikkim', 44], ['uttarakhand', 45]
+  ]
+  data: any = [];
   selectedType: string = "";
-  filteredList = [];
+  filteredList: any = [];
   chartOptions: Highcharts.Options = {}
   selectedCategory: string = ""
   constructor(
@@ -316,6 +331,7 @@ export class DashboardPage implements OnInit {
     // const IndiaMap = await import('@highcharts/map-collection/countries/in/in-all.geo.json');
   }
   ionViewWillEnter() {
+    this.data = this.mapData
     this.handleSelectedCategory(this.categories[0]);
     this.selectedType = "NSS"
     this.updateGhaph([0, 2, 2.5, 1, 3, 1, 0, 2])
@@ -334,21 +350,44 @@ export class DashboardPage implements OnInit {
     })
 
     await popoverCtrl.present()
-    await popoverCtrl.onDidDismiss().then(res => {
-      console.log("dismiss ", res)
-      if (this.filteredList.length > 0) {
-        this.filteredList = this.filteredList.concat(res.data)
-      } else {
-        this.filteredList = res.data
+    await popoverCtrl.onDidDismiss().then((res: any) => {
+      this.data = [];
+      if (res?.data.length) {
+        if (this.filteredList.length > 0 && !this.filteredList.includes(res?.data)) {
+          this.filteredList = this.filteredList.concat(res.data)
+        } else {
+          this.filteredList = res.data
+        }
       }
+      console.log("dismiss ", res, this.filteredList)
+      this.handleHeatMap();
     })
 
   }
 
-  removeList(list: any) {
-    this.filteredList = this.filteredList.filter(ls => ls !== list)
+  emptyList() {
+    this.filteredList = []
+    this.data = this.mapData;
+    this.handleSelectedCategory({ type: 'youth' })
   }
 
+  removeList(list: any) {
+    this.filteredList = this.filteredList.filter((ls: any) => ls !== list)
+    this.data = [];
+    this.handleHeatMap();
+  }
+
+  handleHeatMap() {
+    if (this.filteredList.length > 0) {
+      this.filteredList.forEach((ele: any) => {
+        console.log('ele ', ele, this.mapData)
+        const ls = this.mapData.filter((a: Array<any>) => { console.log(ele, a[0].toLowerCase() == ele.toLowerCase()); return a[0].toLowerCase() == ele.toLowerCase() })
+        console.log("****** ls ", ls, this.data)
+        this.data.push(ls[0]);
+      });
+      this.handleSelectedCategory({ type: 'youth' })
+    }
+  }
   handleYouthData(youthData: any) {
     this.selectedType = youthData.type
     console.log("****** youthData ", youthData)
@@ -391,7 +430,7 @@ export class DashboardPage implements OnInit {
       chart: {
         map: topo,
         events: {
-          click(e) {
+          click(e: any) {
             console.log('Chart clicked!', e);
           }
         }
@@ -406,20 +445,7 @@ export class DashboardPage implements OnInit {
       series: [{
         type: 'map',
         color: "#ff0000",
-        data: [
-          ['madhya pradesh', 10], ['uttar pradesh', 11], ['karnataka', 12],
-          ['nagaland', 13], ['bihar', 14], ['lakshadweep', 15],
-          ['andaman and nicobar', 16], ['assam', 17], ['west bengal', 18],
-          ['puducherry', 19], ['daman and diu', 20], ['gujarat', 21],
-          ['rajasthan', 22], ['dadara and nagar havelli', 23],
-          ['chhattisgarh', 24], ['tamil nadu', 25], ['chandigarh', 26],
-          ['punjab', 27], ['haryana', 28], ['andhra pradesh', 29],
-          ['maharashtra', 30], ['himachal pradesh', 31], ['meghalaya', 32],
-          ['kerala', 33], ['telangana', 34], ['mizoram', 35], ['tripura', 36],
-          ['manipur', 37], ['arunanchal pradesh', 38], ['jharkhand', 39],
-          ['goa', 40], ['nct of delhi', 41], ['odisha', 42],
-          ['jammu and kashmir', 43], ['sikkim', 44], ['uttarakhand', 45]
-        ],
+        data: this.data,
         showCheckbox: true,
         states: {
           hover: {
