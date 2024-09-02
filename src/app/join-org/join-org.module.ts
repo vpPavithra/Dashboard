@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { JoinOrgPageRoutingModule } from './join-org-routing.module';
 
 import { JoinOrgPage } from './join-org.page';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { JoinOrgPage } from './join-org.page';
     FormsModule,
     IonicModule,
     JoinOrgPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ComponentsModule
   ],
   declarations: [JoinOrgPage]
 })

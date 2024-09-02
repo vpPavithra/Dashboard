@@ -1,62 +1,106 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title></ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
   <div class="main-content">
-    <div style="margin-inline: 4rem;">
-      <ion-button fill="clear" style="color: black; font-size: 16px;">
+    <div class="section1">
+      <ion-button fill="clear" (click)="navigateBack()">
         <ion-icon slot="start" name="arrow-back"></ion-icon>
         Go back
       </ion-button>
     </div>
-    <div>
+    <div class="section2">
       <ion-item lines="none">
-        <ion-title style="color: red;">Join My Bharat Organization</ion-title>
+        <ion-title color="danger">Join My Bharat Organization</ion-title>
       </ion-item>
-      <Form style="width: 90%;" [formGroup]="joinOrgForm" (ngSubmit)="onSubmit()">
-        <div style="border: 1px solid lightgrey; margin: 2rem; border-radius: 10px;">
-          <ion-item lines="none" style="margin-top: 1rem;">
-            <ion-title>Organization Structure</ion-title>
-          </ion-item>
-          <ion-row style="margin: 2rem;">
-            <ion-col *ngFor="let field of items" size="6">
-              <div style="margin-right: 2rem; margin-bottom: 1rem;">
-                <ion-label style="margin-bottom: 1rem;">{{field.label}}<span *ngIf="field.required" style="color: red;">*</span></ion-label>
-                <ion-select formControlName="{{field.label}}" fill="outline" labelPlacement="stacked" [placeholder]="field.placeholder" interface="popover" style="margin-top: 1rem;">
-                  <ion-select-option *ngFor="let opt of field.options" [value]="opt">{{opt}}</ion-select-option>
-                </ion-select>
-              </div>
-            </ion-col>
-          </ion-row>
-        </div>
+      <div *ngIf="showForm">
+        <Form style="width: 90%;" [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
+          <ion-card>
+            <!-- <div style="border: 1px solid lightgrey; margin: 2rem; border-radius: 10px;"> -->
+              <ion-card-content>
+                <ion-item lines="none" style="margin-top: 1rem;">
+                  <ion-title>Organization Structure</ion-title>
+                </ion-item>
+                <ion-row *ngIf="orgType == 'gov'">
+                  <ion-col *ngFor="let field of itemsGov" size="6">
+                    <div class="col-content">
+                      <ion-label style="font-size: 16px;">{{field.label}}<span *ngIf="field.required">*</span></ion-label>
+                      <ion-select fill="outline" labelPlacement="stacked" [placeholder]="field.placeholder" [formControlName]="field.id" interface="popover" style="margin-top: 0.6rem;">
+                        <ion-select-option *ngFor="let opt of field.options" [value]="opt">{{opt}}</ion-select-option>
+                      </ion-select>
+                      <div *ngIf="dynamicForm?.get(field.id)?.status == 'INVALID' && (dynamicForm?.get(field.id)?.dirty || dynamicForm?.get(field.id)?.touched)">
+                        <ion-label color="danger" *ngIf="dynamicForm?.get(field.id)?.errors?.['required']">
+                          {{field.label}} is required.
+                        </ion-label>
+                        <ion-label color="danger" *ngIf="dynamicForm?.get(field.id)?.errors?.['pattern']">
+                          Please enter valid data.
+                        </ion-label>
+                      </div>
+                    </div>
+                  </ion-col>
+                </ion-row>
 
-        <div style="border: 1px solid lightgrey; margin: 2rem; border-radius: 10px;">
-          <ion-item lines="none" style="margin-top: 1rem;">
-            <ion-title>Offical Address</ion-title>
-          </ion-item>
-          <ion-row style="margin: 2rem;">
-            <ion-col *ngFor="let field of officalAdd" size="6">
-              <div style="margin-right: 2rem; margin-bottom: 1rem;">
-                <ion-label style="margin-bottom: 1rem;">{{field.label}}<span *ngIf="field.required" style="color: red;">*</span></ion-label>
-                <div style="display: flex; margin-top: 1rem;">
-                  <ion-input style="width: 15%; margin-right: 1rem;" *ngIf="field.type == 'tel'" fill="outline" [type]="field.type" placeholder="+91"></ion-input>
-                  <ion-input *ngIf="field.type !== 'select'" fill="outline" formControlName="{{field.label}}" [type]="field.type" [placeholder]="field.placeholder"></ion-input>
-                </div>
-                <ion-select *ngIf="field.type == 'select'" fill="outline" formControlName="{{field.label}}" labelPlacement="stacked" [placeholder]="field.placeholder" interface="popover" style="margin-top: 1rem;">
-                  <ion-select-option *ngFor="let opt of field.options" [value]="opt">{{opt}}</ion-select-option>
-                </ion-select>
-              </div>
-            </ion-col>
-          </ion-row>
-        </div>
-        <div style="float: right; margin: 2rem;">
-          <ion-button color="danger" fill="outline" slot="end" style="margin-right: 2rem;">Cancel</ion-button>
-          <ion-button color="danger" slot="end" type="submit">Send Request</ion-button>
-        </div>
-      </Form>
+                <ion-row *ngIf="orgType == 'ki'">
+                  <ion-col *ngFor="let field of itemsKI" size="6">
+                    <div class="col-content">
+                      <ion-label style="font-size: 16px;">{{field.label}}<span *ngIf="field.required">*</span></ion-label>
+                      <ion-select fill="outline" labelPlacement="stacked" [placeholder]="field.placeholder" [formControlName]="field.id" interface="popover" style="margin-top: 0.6rem;">
+                        <ion-select-option *ngFor="let opt of field.options" [value]="opt">{{opt}}</ion-select-option>
+                      </ion-select>
+                      <div *ngIf="dynamicForm?.get(field.id)?.status == 'INVALID' && (dynamicForm?.get(field.id)?.dirty || dynamicForm?.get(field.id)?.touched)">
+                        <ion-label color="danger" *ngIf="dynamicForm?.get(field.id)?.errors?.['required']">
+                          {{field.label}} is required.
+                        </ion-label>
+                        <ion-label color="danger" *ngIf="dynamicForm?.get(field.id)?.errors?.['pattern']">
+                          Please enter valid data.
+                        </ion-label>
+                      </div>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-card-content>
+            <!-- </div> -->
+          </ion-card>
+  
+          <ion-card>
+            <!-- <div style="border: 1px solid lightgrey; margin: 2rem; border-radius: 10px;"> -->
+              <ion-card-content>
+                <ion-item lines="none" style="margin-top: 1rem;">
+                  <ion-title>Offical Address</ion-title>
+                </ion-item>
+                <ion-row>
+                  <ion-col *ngFor="let field of officalAdd" size="6">
+                    <div class="col-content">
+                      <ion-label style="font-size: 16px;">{{field.label}}<span *ngIf="field.required" style="color: red;">*</span></ion-label>
+                      <div style="display: flex; margin-top: 0.6rem;">
+                        <ion-input style="width: 15%; margin-right: 1rem;"  *ngIf="field.id == 'mobile'" fill="outline" [type]="field.type" placeholder="+91"></ion-input>
+                        <ion-input *ngIf="field.type !== 'select' && field.type !== 'radio'" [formControlName]="field.id" [value]="field.value" [disabled]="field.disabled ?? false" fill="outline" [type]="field.type" [placeholder]="field.placeholder"></ion-input>
+                      </div>
+                      <ion-item lines="none" *ngIf="field.type == 'radio'">
+                        <ion-radio-group [allowEmptySelection]="true" [value]="field.value" [formControlName]="field.id">
+                          <ion-radio *ngFor="let opt of field.options" [value]="opt" [disabled]="field.disabled ?? false">{{opt}}</ion-radio><br />
+                        </ion-radio-group>
+                      </ion-item>
+                      <ion-select *ngIf="field.type == 'select'" fill="outline" labelPlacement="stacked" [formControlName]="field.id" [placeholder]="field.placeholder" interface="popover" style="margin-top: 0.6rem;">
+                        <ion-select-option *ngFor="let opt of field.options" [value]="opt">{{opt}}</ion-select-option>
+                      </ion-select>
+                      <div *ngIf="dynamicForm?.get(field.id)?.status == 'INVALID' && (dynamicForm?.get(field.id)?.dirty || dynamicForm?.get(field.id)?.touched)">
+                        <ion-label color="danger" *ngIf="dynamicForm?.get(field.id)?.errors?.['required']">
+                          {{field.label}} is required.
+                        </ion-label>
+                        <ion-label color="danger" *ngIf="dynamicForm?.get(field.id)?.errors?.['pattern'] || dynamicForm?.get(field.id)?.errors?.[field.id]">
+                          Please enter valid data.
+                        </ion-label>
+                      </div>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-card-content>
+            <!-- </div> -->
+          </ion-card>
+          <div style="float: right; margin: 2rem;">
+            <ion-button color="danger" fill="outline" slot="end" style="margin-right: 2rem;" (click)="navigateBack()">Cancel</ion-button>
+            <ion-button color="danger" slot="end" type="submit" [disabled]="dynamicForm.invalid">Send Request</ion-button>
+          </div>
+        </Form>
+      </div>
     </div>
   </div>
 </ion-content>

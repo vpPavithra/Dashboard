@@ -15,14 +15,64 @@ ion-segment {
         --indicator-height: 0
     }
     ion-label {
-        font-size: 26px;
+        font-size: 24px;
     }
 }
 
+ion-title {
+    font-weight: bold;
+}
 .main-content {
     display: flex;
     margin: 2rem;
     ion-button {
         text-transform: capitalize;
+        color: black;
+    }
+    .section1 {
+        width: 15%; 
+        margin: 1rem 0 0 2rem;
+    }
+    .section2 {
+        width: 80%;
+        .logo {
+            margin: -8rem 0 2rem;
+            display: flex;
+        }
     }
 }
+
+
+ion-row {
+    margin: 1rem;
+}
+
+.col-content {
+    margin-inline: 1rem; 
+    margin-bottom: 1rem;
+}
+
+ion-item {
+    --background: transparent;
+}
+
+ion-checkbox {
+    width: auto;
+}
+
+.search {
+    --padding-end: 0;
+    ion-button {
+        margin: 0;
+        height: 100%;
+        --border-color: lightgrey
+    }
+}
+
+ion-input[disabled] {
+    background-color: #f0f0f0; /* Light gray background for disabled input */
+    color: #a0a0a0; /* Gray text color */
+    cursor: not-allowed; /* Change cursor to indicate it's not interactive */
+    /* Ensure no properties like 'display: none' or 'visibility: hidden' are applied */
+}
+  

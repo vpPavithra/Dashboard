@@ -3,23 +3,47 @@
   <ion-item lines="none" class="section">
     <div>
       <ion-label>About</ion-label>
-      <ion-textarea [disabled]="true">Description</ion-textarea>
+      <ion-textarea [disabled]="true">{{formData.value.about}}</ion-textarea>
     </div>
   </ion-item>
   <div class="custom-line"></div>
 
   <ion-title>Organization Structure</ion-title>
   <ion-item lines="none" class="section">
+    <ion-row>
+      <ion-col size="3" *ngFor="let item of orgStr">
+        <div style="display: flex; flex-direction: column;" *ngIf="item.key !== '' && item.value !==''">
+          <ion-label>{{item.key}}</ion-label>
+          <ion-label style="font-weight: bold;">{{item.value}}</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
   </ion-item>
   <div class="custom-line"></div>
 
   <ion-title>Organization Address</ion-title>
   <ion-item lines="none" class="section">
+    <ion-row>
+      <ion-col size="3" *ngFor="let item of offAdd">
+        <div style="display: flex; flex-direction: column;" *ngIf="item.key !== '' && item.value !==''">
+          <ion-label>{{item.key}}</ion-label>
+          <ion-label style="font-weight: bold;">{{item.value}}</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
   </ion-item>
   <div class="custom-line"></div>
 
   <ion-title>Contact Info(for display on home page)</ion-title>
   <ion-item lines="none" class="section">
+    <ion-row>
+      <ion-col size="3" *ngFor="let item of contactInfo">
+        <div style="display: flex; flex-direction: column;" *ngIf="item.key !== '' && item.value !==''">
+          <ion-label>{{item.key}}</ion-label>
+          <ion-label style="font-weight: bold;">{{item.value}}</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
   </ion-item>
   <div class="custom-line"></div>
 
@@ -33,7 +57,7 @@
   <div class="custom-line"></div>
 
   <div style="float: right; margin: 2rem;">
-    <ion-button color="danger" fill="outline" slot="end" style="margin-right: 2rem;">Download</ion-button>
+    <ion-button color="danger" fill="outline" slot="end" style="margin-right: 2rem;" (click)="download()">Download</ion-button>
     <ion-button color="danger" slot="end" type="submit" (click)="{}">Submit</ion-button>
   </div>
 </div>

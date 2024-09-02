@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
 import { CreateOrgPageRoutingModule } from './create-org-routing.module';
 
 import { CreateOrgPage } from './create-org.page';
-import { ComponentsModule } from '../components/components.module';
+import { ComponentsModule } from 'src/app/modules/components/components.module';
 
 @NgModule({
   imports: [
@@ -15,6 +15,7 @@ import { ComponentsModule } from '../components/components.module';
     FormsModule,
     IonicModule,
     CreateOrgPageRoutingModule,
+    ReactiveFormsModule,
     ComponentsModule
   ],
   declarations: [CreateOrgPage]

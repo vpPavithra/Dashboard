@@ -5,3 +5,49 @@
         text-transform: capitalize;
     }
 }
+ion-title {
+    font-weight: bold;
+}
+
+ion-item {
+    --background: transparent;
+}
+
+.section1 {
+    width: 25%; 
+    margin: 1rem 0 0 2rem;
+    ion-button {
+        color: black; 
+        font-size: 16px;
+    }
+}
+
+.section2 {
+    margin: 1rem;
+}
+
+span {
+    color: red;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+ion-card {
+    margin: 2rem;
+}
+
+ion-row {
+    margin: 1rem;
+}
+
+.col-content {
+    margin-inline: 1rem; 
+    margin-bottom: 1rem;
+}
+
+ion-radio-group {
+    display: flex;
+    ion-radio {
+        margin-right: 1rem;
+    }
+}
